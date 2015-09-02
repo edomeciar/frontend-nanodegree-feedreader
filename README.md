@@ -1,3 +1,17 @@
+Project 6 - FeedReader test
+====================================
+
+Run the project
+---------------
+I have implemented aditional test function for this project, base on the requirments.
+To run project, download files from git and open index.html in any modern browser.
+
+
+GUI
+-----------------------------------------------------------------------------------------------
+Unit testing is provided by framework Jasmine. Tests run automaticly after open index.html file in browser. In the bottom of the page, you can see results of all test. In test we are tunning 7 test funciton and they are defined in 4 sections: (RSS Feeds,The menu,Initial Entries' and New Feed Selection). 
+
+
 # Project Overview
 
 In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.
