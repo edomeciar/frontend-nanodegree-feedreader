@@ -21,11 +21,11 @@ $(function() {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('are defined', function() {
+
+        it('are defined', function(){
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
-
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
@@ -36,32 +36,29 @@ $(function() {
             /*
             loop allFeeds and check if url is defined, not null and not empty string
             */
-            $.each(allFeeds, function( index, value ) {
+            $.each(allFeeds, function(index,value){
                 expect(value.url).toBeDefined();
                 expect(value.url).not.toBeNull();
                 expect(value.url).not.toBe('');
             });
         });
 
-
         /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
+        * in the allFeeds object and ensures it has a name defined
+        * and that the name is not empty.
+        */
 
          it('Has a name defined',function(){
             /*
             loop allFeeds and check if name is defined, not null and not empty string
             */
-            $.each(allFeeds, function( index, value ) {
+            $.each(allFeeds, function(index,value){
                 expect(value.name).toBeDefined();
                 expect(value.name).not.toBeNull();
                 expect(value.name).not.toBe('');
             });
         });
-
     });
-
 
     /* TODO: Write a new test suite named "The menu" */
 
@@ -73,20 +70,20 @@ $(function() {
          * hiding/showing of the menu element.
          */
 
-         it("Hidden menu by default",function(){
+        it("Hidden menu by default",function(){
             /*
             test, if body has class "menu-hidden" by default. This class is used to hide/show menu
             */
             expect($("body").hasClass("menu-hidden")).toBe(true);
-         });
+        });
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+        /* TODO: Write a test that ensures the menu changes
+        * visibility when the menu icon is clicked. This test
+        * should have two expectations: does the menu display when
+        * clicked and does it hide when clicked again.
+        */
 
-          it("Click menu visibiliy",function(){
+        it("Click menu visibiliy",function(){
             /*
             fake action click on menu icon and test, if class menu-hidden was add/removed
             */
@@ -95,8 +92,7 @@ $(function() {
             expect(domBody.hasClass("menu-hidden")).not.toBe(true);
             $(".menu-icon-link").click();
             expect(domBody.hasClass("menu-hidden")).toBe(true);
-          });
-
+        });
      });
 
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -114,18 +110,17 @@ $(function() {
         test loading feed by using jasmine asych testing. Call loadFeed function with id 0 and expecting, that this function
         will populate dom element ".feed .entry-link"
         */
-        beforeEach(function(done) {
-            setTimeout(function() {
+        beforeEach(function(done){
+            setTimeout(function(){
                 loadFeed(0,done);
             }, 100);
         });
 
         it('Ajax load',function(done){
-            var feedLength = $(".feed .entry-link").length;
+            var feedLength= $(".feed .entry-link").length;
             expect(feedLength).toBeGreaterThan(0);
             done();
         });
-
      });
 
     /* TODO: Write a new test suite named "New Feed Selection"*/
@@ -143,11 +138,9 @@ $(function() {
          */
         var beforeLoad;
         var afterLoad;
-
-        beforeEach(function(done) {
+        beforeEach(function(done){
                 beforeLoad = $(".feed").html();
                 loadFeed(1,done);
-
         });
 
         it('Ajax load content change',function(done){
@@ -155,10 +148,6 @@ $(function() {
             expect(afterLoad).not.toEqual(beforeLoad);
             done();
         });
-
     });
-
-
-
 
 }());
