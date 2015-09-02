@@ -33,6 +33,9 @@ $(function() {
          */
 
         it('Has a URL defined',function(){
+            /*
+            loop allFeeds and check if url is defined, not null and not empty string
+            */
             $.each(allFeeds, function( index, value ) {
                 expect(value.url).toBeDefined();
                 expect(value.url).not.toBeNull();
@@ -47,6 +50,9 @@ $(function() {
          */
 
          it('Has a name defined',function(){
+            /*
+            loop allFeeds and check if name is defined, not null and not empty string
+            */
             $.each(allFeeds, function( index, value ) {
                 expect(value.name).toBeDefined();
                 expect(value.name).not.toBeNull();
@@ -68,6 +74,9 @@ $(function() {
          */
 
          it("Hidden menu by default",function(){
+            /*
+            test, if body has class "menu-hidden" by default. This class is used to hide/show menu
+            */
             expect($("body").hasClass("menu-hidden")).toBe(true);
          });
 
@@ -78,6 +87,9 @@ $(function() {
           */
 
           it("Click menu visibiliy",function(){
+            /*
+            fake action click on menu icon and test, if class menu-hidden was add/removed
+            */
             var domBody = $("body");
             $(".menu-icon-link").click();
             expect(domBody.hasClass("menu-hidden")).not.toBe(true);
@@ -89,6 +101,8 @@ $(function() {
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
+    describe('Initial Entries',function(){
+
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
@@ -96,10 +110,55 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
-    /* TODO: Write a new test suite named "New Feed Selection"
+        /*
+        test loading feed by using jasmine asych testing. Call loadFeed function with id 0 and expecting, that this function
+        will populate dom element ".feed .entry-link"
+        */
+        beforeEach(function(done) {
+            setTimeout(function() {
+                loadFeed(0,done);
+            }, 100);
+        });
+
+        it('Ajax load',function(done){
+            var feedLength = $(".feed .entry-link").length;
+            expect(feedLength).toBeGreaterThan(0);
+            done();
+        });
+
+     });
+
+    /* TODO: Write a new test suite named "New Feed Selection"*/
+
+    describe('New Feed Selection',function(done){
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+
+         /*
+        define two variable beforeLoad, afterLoad. Populate beforeLoad with html from .feed before call function loadFeed.
+        Populate afterLoad in done function with html from same DOM elemnt and compare this two variables. Expect to be different.
+         */
+        var beforeLoad;
+        var afterLoad;
+
+        beforeEach(function(done) {
+                beforeLoad = $(".feed").html();
+                loadFeed(1,done);
+
+        });
+
+        it('Ajax load content change',function(done){
+            afterLoad = $(".feed").html();
+            expect(afterLoad).not.toEqual(beforeLoad);
+            done();
+        });
+
+    });
+
+
+
+
 }());
